@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Menu - Red Velvet Drink House</title>
+<style>
+  body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(to bottom right, #ffe6eb, #fff5f8);
+    color: #660033;
+  }
+
+  header {
+    background-color: #ff4d6d;
+    color: white;
+    text-align: center;
+    padding: 40px 0;
+  }
+
+  nav {
+    background-color: white;
+    border-bottom: 2px solid #ffb3c6;
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    padding: 10px 0;
+    position: relative;
+  }
+
+  nav a {
+    text-decoration: none;
+    color: #ff4d6d;
+    font-weight: bold;
+    padding: 10px 15px;
+    position: relative;
+  }
+
+  nav a:hover {
+    color: #b30047;
+  }
+
+  /* Dropdown Styles */
+  .dropdown {
+    position: relative;
+    display: inline-block;
+  }
+
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: white;
+    min-width: 200px;
+    box-shadow: 0 8px 16px rgba(255, 77, 109, 0.2);
+    border-radius: 10px;
+    z-index: 1;
+    margin-top: 5px;
+    border: 2px solid #ffb3c6;
+    overflow: hidden;
+  }
+
+  .dropdown-content a {
+    color: #ff4d6d;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    font-weight: normal;
+    transition: all 0.3s ease;
+  }
+
+  .dropdown-content a:hover {
+    background-color: #ffe6eb;
+    color: #b30047;
+    padding-left: 20px;
+  }
+
+  .dropdown:hover .dropdown-content {
+    display: block;
+    animation: fadeIn 0.3s ease;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .dropdown > a::after {
+    content: " ▾";
+    font-size: 12px;
+  }
+
+  /* Filter Section */
+  .filter-section {
+    text-align: center;
+    padding: 30px 40px 10px;
+  }
+
+  .filter-dropdown {
+    padding: 12px 20px;
+    font-size: 16px;
+    border: 2px solid #ffb3c6;
+    border-radius: 25px;
+    background-color: white;
+    color: #ff4d6d;
+    font-weight: bold;
+    cursor: pointer;
+    outline: none;
+    transition: all 0.3s ease;
+  }
+
+  .filter-dropdown:hover {
+    background-color: #ff4d6d;
+    color: white;
+    transform: scale(1.05);
+  }
+
+  .filter-dropdown:focus {
+    border-color: #b30047;
+  }
+
+  .menu-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 25px;
+    padding: 40px;
+  }
+
+  .menu-item {
+    background: white;
+    border-radius: 15px;
+    width: 250px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    text-align: center;
+    padding: 20px;
+    transition: transform 0.3s ease;
+  }
+
+  .menu-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 20px rgba(255, 77, 109, 0.3);
+  }
+
+  .menu-item img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 10px;
+    background: linear-gradient(135deg, #ffe6eb, #ffb3c6);
+  }
+
+  .menu-item h3 {
+    color: #b30047;
+    margin-top: 10px;
+  }
+
+  .menu-item .price {
+    color: #ff4d6d;
+    font-weight: bold;
+    font-size: 18px;
+    margin: 10px 0;
+  }
+
+  .menu-item.hidden {
+    display: none;
+  }
+
+  footer {
+    background-color: #ff4d6d;
+    color: white;
+    text-align: center;
+    padding: 20px 0;
+    margin-top: 30px;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Menu Minuman</h1>
+  <p>Lezat, manis, dan menggoda 💖</p>
+</header>
+
+<nav>
+  <a href="index widi.html">Beranda</a>
+  <div class="dropdown">
+    <a href="menu.html">Menu</a>
+    <div class="dropdown-content">
+      <a href="#" onclick="filterMenu('hot')">Minuman Panas ☕</a>
+      <a href="#" onclick="filterMenu('cold')">Minuman Dingin 🧊</a>
+      <a href="#" onclick="filterMenu('all')">Semua Menu 🍓</a>
+    </div>
+  </div>
+  <a href="kontak.html">Kontak</a>
+</nav>
+
+<div class="filter-section">
+  <label for="categoryFilter" style="color: #b30047; font-weight: bold; margin-right: 10px;">Filter Kategori:</label>
+  <select id="categoryFilter" class="filter-dropdown" onchange="filterMenu(this.value)">
+    <option value="all">🍓 Semua Menu</option>
+    <option value="hot">☕ Minuman Panas</option>
+    <option value="cold">🧊 Minuman Dingin</option>
+  </select>
+</div>
+
+<div class="menu-container">
+  <div class="menu-item" data-category="hot">
+    <img src="c:\Users\Hype GLK\Documents\percobaan\pahot.png" alt="Red Velvet Latte">
+    <h3>Red Velvet Latte</h3>
+    <p>Perpaduan lembut antara susu hangat dan red velvet yang creamy.</p>
+    <div class="price">Rp 28.000</div>
+  </div>
+  <div class="menu-item" data-category="cold">
+    <img src="c:\Users\Hype GLK\Documents\percobaan\frappe 1.png" alt="Red Velvet Frappe">
+    <h3>Red Velvet Frappe</h3>
+    <p>Minuman dingin penuh kenikmatan dan aroma cokelat red velvet.</p>
+    <div class="price">Rp 32.000</div>
+  </div>
+  <div class="menu-item" data-category="cold">
+    <img src="c:\Users\Hype GLK\Documents\percobaan\milkkkkkkkkkkkkkkk.webp" alt="Red Velvet Milkshake">
+    <h3>Red Velvet Milkshake</h3>
+    <p>Rasa manis menggoda dengan whipped cream lembut di atasnya.</p>
+    <div class="price">Rp 35.000</div>
+  </div>
+  <div class="menu-item" data-category="cold">
+    <img src="c:\Users\Hype GLK\Documents\percobaan\ice bleend.png" alt="Red Velvet Ice Blend">
+    <h3>Red Velvet Ice Blend</h3>
+    <p>Segar dan nikmat, pas untuk cuaca panas!</p>
+    <div class="price">Rp 30.000</div>
+  </div>
+</div>
+
+<footer>
+  <p>© 2025 Red Velvet Drink House | Designed by Widi Hesti 🍓</p>
+</footer>
+
+<script>
+function filterMenu(category) {
+  const menuItems = document.querySelectorAll('.menu-item');
+  
+  menuItems.forEach(item => {
+    if (category === 'all') {
+      item.classList.remove('hidden');
+    } else {
+      if (item.getAttribute('data-category') === category) {
+        item.classList.remove('hidden');
+      } else {
+        item.classList.add('hidden');
+      }
+    }
+  });
+}
+</script>
+
+</body>
+</html>
